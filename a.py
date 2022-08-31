@@ -4,16 +4,16 @@ from scrapy.loader import ItemLoader
 from idj.items import JobsItem
 import dateparser
 
-# scrapy crawl amnesty -O output/amnesty.json
+# scrapy crawl a-- -O output/a--.json
 
 
-class AmnestySpider(scrapy.Spider):
+class A-Spider(scrapy.Spider):
 
-    name = "amnesty"
+    name = "a--"
 
     # custom_settings = {"FEEDS": {"%(name)s.json": {"format": "json"}}}
 
-    start_urls = ["https://careers.amnesty.org/vacancy/find/results/"]
+    start_urls = ["https://xxx"]
 
     def parse(self, response):
         # get cookies, find pagestamp and get all jobs
@@ -21,7 +21,7 @@ class AmnestySpider(scrapy.Spider):
             '//script[contains(., "_gridhandler")]/text()'
         ).re_first(r"var url = '(/[^']+_gridhandler[^']+)")
         if api_url:
-            api_url = "https://careers.amnesty.org" + api_url
+            api_url = "https://xxx" + api_url
             yield scrapy.Request(
                 url=api_url,
                 callback=self.parse_jobs,
@@ -66,8 +66,8 @@ class AmnestySpider(scrapy.Spider):
         l.add_xpath("location", '//div[.="Location:"]/following-sibling::div[1]/text()')
         # l.add_xpath('contract_type', '') # TODO
         # l.add_xpath('salary', '') # TODO
-        l.add_value("organisation", "Amnesty International")
-        l.add_value("website", "https://www.amnesty.org/")
+        l.add_value("organisation", "xxx")
+        l.add_value("website", "xxx")
 
         l.add_value("contract_type_jboard", None)
         
