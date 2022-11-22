@@ -59,6 +59,8 @@ class JobsItem(scrapy.Item):
     date_created = scrapy.Field(
         input_processor=MapCompose(replace_escape_chars), output_processor=TakeFirst()
     )
+    
+  #the date when the job ad closes
     date_closing = scrapy.Field(
         input_processor=MapCompose(date, replace_escape_chars, remove_tags), 
         output_processor=TakeFirst()
